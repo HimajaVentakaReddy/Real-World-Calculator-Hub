@@ -18,7 +18,13 @@ export function CalculatorCard({ module, onSelect }: CalculatorCardProps) {
             </span>
           </div>
 
-          <div className="text-xs text-slate-500 font-medium">
+          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+            {module.id === 'fuel-cost' && (
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Active
+              </span>
+            )}
             <span>{module.category}</span>
           </div>
         </div>

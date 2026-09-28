@@ -10,11 +10,13 @@ import { CalculatorGrid } from './components/CalculatorGrid';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { ModulePreviewModal } from './components/ModulePreviewModal';
+import { FuelCostCalculator } from './components/calculators/FuelCostCalculator';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'home' | 'calculators' | 'about'>('home');
+  const [activeCalculatorId, setActiveCalculatorId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory>('All');
   const [selectedModule, setSelectedModule] = useState<CalculatorModule | null>(null);
@@ -40,17 +42,41 @@ export default function App() {
     setSelectedCategory('All');
   };
 
+  const handleSelectModule = (mod: CalculatorModule) => {
+    if (mod.id === 'fuel-cost') {
+      setActiveCalculatorId('fuel-cost');
+      setActiveTab('calculators');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setSelectedModule(mod);
+    }
+  };
+
   const handleNavClick = (tab: 'home' | 'calculators' | 'about') => {
     setActiveTab(tab);
-    if (tab === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (tab === 'calculators') {
+    setActiveCalculatorId(null);
+
+    // Wait a tick for render if we were in calculator view
+    setTimeout(() => {
+      if (tab === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (tab === 'calculators') {
+        const el = document.getElementById('modules-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else if (tab === 'about') {
+        const el = document.getElementById('about-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 10);
+  };
+
+  const handleBackToHome = () => {
+    setActiveCalculatorId(null);
+    setActiveTab('calculators');
+    setTimeout(() => {
       const el = document.getElementById('modules-section');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
-    } else if (tab === 'about') {
-      const el = document.getElementById('about-section');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
+    }, 10);
   };
 
   return (
@@ -60,31 +86,39 @@ export default function App() {
 
       {/* Main Content Viewport */}
       <main className="flex-1">
-        {/* Modern Homepage Hero with Title, Subtitle, Search and Filter */}
-        <Hero
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          totalCount={CALCULATOR_MODULES.length}
-        />
+        {activeCalculatorId === 'fuel-cost' ? (
+          /* Dedicated Fuel Cost Calculator View */
+          <FuelCostCalculator onBack={handleBackToHome} />
+        ) : (
+          /* Homepage View */
+          <>
+            {/* Modern Homepage Hero with Title, Subtitle, Search and Filter */}
+            <Hero
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              totalCount={CALCULATOR_MODULES.length}
+            />
 
-        {/* 10 Real-World Calculator Cards Grid */}
-        <CalculatorGrid
-          modules={filteredModules}
-          onSelectModule={(mod) => setSelectedModule(mod)}
-          onResetFilter={handleResetFilters}
-          isFiltered={selectedCategory !== 'All' || searchQuery.trim().length > 0}
-        />
+            {/* 10 Real-World Calculator Cards Grid */}
+            <CalculatorGrid
+              modules={filteredModules}
+              onSelectModule={handleSelectModule}
+              onResetFilter={handleResetFilters}
+              isFiltered={selectedCategory !== 'All' || searchQuery.trim().length > 0}
+            />
 
-        {/* Project About & Roadmap Section */}
-        <AboutSection />
+            {/* Project About & Roadmap Section */}
+            <AboutSection />
+          </>
+        )}
       </main>
 
       {/* Footer */}
       <Footer onNavClick={handleNavClick} />
 
-      {/* Modal Dialog for Step 1 previews */}
+      {/* Modal Dialog for the other 9 modules preview */}
       <ModulePreviewModal
         module={selectedModule}
         onClose={() => setSelectedModule(null)}
