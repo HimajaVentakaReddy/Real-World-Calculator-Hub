@@ -12,6 +12,7 @@ import { Footer } from './components/Footer';
 import { ModulePreviewModal } from './components/ModulePreviewModal';
 import { FuelCostCalculator } from './components/calculators/FuelCostCalculator';
 import { WaterBillCalculator } from './components/calculators/WaterBillCalculator';
+import { HotelBillCalculator } from './components/calculators/HotelBillCalculator';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -44,7 +45,7 @@ export default function App() {
   };
 
   const handleSelectModule = (mod: CalculatorModule) => {
-    if (mod.id === 'fuel-cost' || mod.id === 'water-bill') {
+    if (mod.id === 'fuel-cost' || mod.id === 'water-bill' || mod.id === 'hotel-bill') {
       setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -93,6 +94,9 @@ export default function App() {
         ) : activeCalculatorId === 'water-bill' ? (
           /* Dedicated Water Bill Calculator View */
           <WaterBillCalculator onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'hotel-bill' ? (
+          /* Dedicated Hotel Room Bill Calculator View */
+          <HotelBillCalculator onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>
