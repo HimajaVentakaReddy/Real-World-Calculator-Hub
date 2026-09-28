@@ -1,0 +1,6 @@
+{
+  "name": "Real-World Calculator Hub",
+  "description": "Simple tools for everyday calculations and decisions. A college mini project featuring 10 essential real-world calculators and checkers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
