@@ -11,6 +11,7 @@ import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { ModulePreviewModal } from './components/ModulePreviewModal';
 import { FuelCostCalculator } from './components/calculators/FuelCostCalculator';
+import { WaterBillCalculator } from './components/calculators/WaterBillCalculator';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -43,8 +44,8 @@ export default function App() {
   };
 
   const handleSelectModule = (mod: CalculatorModule) => {
-    if (mod.id === 'fuel-cost') {
-      setActiveCalculatorId('fuel-cost');
+    if (mod.id === 'fuel-cost' || mod.id === 'water-bill') {
+      setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -89,6 +90,9 @@ export default function App() {
         {activeCalculatorId === 'fuel-cost' ? (
           /* Dedicated Fuel Cost Calculator View */
           <FuelCostCalculator onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'water-bill' ? (
+          /* Dedicated Water Bill Calculator View */
+          <WaterBillCalculator onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>
