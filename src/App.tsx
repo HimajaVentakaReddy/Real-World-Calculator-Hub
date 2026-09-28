@@ -14,6 +14,7 @@ import { FuelCostCalculator } from './components/calculators/FuelCostCalculator'
 import { WaterBillCalculator } from './components/calculators/WaterBillCalculator';
 import { HotelBillCalculator } from './components/calculators/HotelBillCalculator';
 import { BusFareCalculator } from './components/calculators/BusFareCalculator';
+import { LibraryFineCalculator } from './components/calculators/LibraryFineCalculator';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -50,7 +51,8 @@ export default function App() {
       mod.id === 'fuel-cost' ||
       mod.id === 'water-bill' ||
       mod.id === 'hotel-bill' ||
-      mod.id === 'bus-fare'
+      mod.id === 'bus-fare' ||
+      mod.id === 'library-fine'
     ) {
       setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
@@ -106,6 +108,9 @@ export default function App() {
         ) : activeCalculatorId === 'bus-fare' ? (
           /* Dedicated Bus Fare Calculator View */
           <BusFareCalculator onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'library-fine' ? (
+          /* Dedicated Library Fine Calculator View */
+          <LibraryFineCalculator onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>
