@@ -70,12 +70,16 @@ A clean, responsive, and beginner-friendly college mini project that brings toge
 - **Formula**: $\text{Total Fine (₹)} = \text{Number of Late Days} \times \text{Applicable Rate per Day}$
 - **Outputs**: Library fine receipt slip, on-time status or penalty badge, applicable rate per day, and total fine in ₹.
 
+### 6. 📱 Mobile Recharge Checker
+- **Inputs**: Mobile Number (10 digits), Recharge Plan (Basic ₹199, Standard ₹299, Premium ₹499), Recharge Date, Validity Period (days).
+- **Formula**: $\text{Expiry Date} = \text{Recharge Date} + \text{Validity Period (Days)}$
+- **Outputs**: Live subscription status badge (**Active** vs. **Expired**), days remaining or overdue, pack price, and formatted calendar expiry date.
+
 ---
 
 ### 📋 Planned Modules (Roadmap Preview)
 
-The remaining 5 modules are represented on the dashboard with specifications and formula previews:
-6. 📱 **Mobile Recharge Checker** (Prepaid validity, daily data cost & allowance tracking)
+The remaining 4 modules are represented on the dashboard with specifications and formula previews:
 7. 🛒 **Shopping Discount Calculator** (Percentage markdown, coupon savings, and sales tax)
 8. 🌡️ **Temperature Alert Checker** (°C/°F conversion with extreme heat/frost advisories)
 9. 🚦 **Traffic Fine Checker** (Statutory penalty fees and traffic violation lookup)
@@ -166,14 +170,15 @@ Real-World-Calculator-Hub/
             ├── WaterBillCalculator.tsx  # 💧 Water Bill Calculator (Active)
             ├── HotelBillCalculator.tsx  # 🏨 Hotel Room Bill Calculator (Active)
             ├── BusFareCalculator.tsx    # 🚌 Bus Fare Calculator (Active)
-            └── LibraryFineCalculator.tsx # 📚 Library Fine Calculator (Active)
+            ├── LibraryFineCalculator.tsx # 📚 Library Fine Calculator (Active)
+            └── MobileRechargeChecker.tsx # 📱 Mobile Recharge Checker (Active)
 ```
 
 ---
 
 ## 🔮 Future Enhancements
 
-- [ ] Implementation of remaining 5 calculation engines (Recharge, Discount, Temperature, Traffic, Car Wash).
+- [ ] Implementation of remaining 4 calculation engines (Discount, Temperature, Traffic, Car Wash).
 - [ ] Calculation history log stored in local storage for quick review.
 - [ ] Printable / PDF export for water utility bills and hotel booking invoices.
 - [ ] Unit toggle switches (e.g. Kilometres vs. Miles, Litres vs. Gallons).

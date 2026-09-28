@@ -15,6 +15,7 @@ import { WaterBillCalculator } from './components/calculators/WaterBillCalculato
 import { HotelBillCalculator } from './components/calculators/HotelBillCalculator';
 import { BusFareCalculator } from './components/calculators/BusFareCalculator';
 import { LibraryFineCalculator } from './components/calculators/LibraryFineCalculator';
+import { MobileRechargeChecker } from './components/calculators/MobileRechargeChecker';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -52,7 +53,8 @@ export default function App() {
       mod.id === 'water-bill' ||
       mod.id === 'hotel-bill' ||
       mod.id === 'bus-fare' ||
-      mod.id === 'library-fine'
+      mod.id === 'library-fine' ||
+      mod.id === 'mobile-recharge'
     ) {
       setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
@@ -111,6 +113,9 @@ export default function App() {
         ) : activeCalculatorId === 'library-fine' ? (
           /* Dedicated Library Fine Calculator View */
           <LibraryFineCalculator onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'mobile-recharge' ? (
+          /* Dedicated Mobile Recharge Checker View */
+          <MobileRechargeChecker onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>
