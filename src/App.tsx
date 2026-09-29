@@ -17,6 +17,7 @@ import { BusFareCalculator } from './components/calculators/BusFareCalculator';
 import { LibraryFineCalculator } from './components/calculators/LibraryFineCalculator';
 import { MobileRechargeChecker } from './components/calculators/MobileRechargeChecker';
 import { ShoppingDiscountCalculator } from './components/calculators/ShoppingDiscountCalculator';
+import { TemperatureAlertChecker } from './components/calculators/TemperatureAlertChecker';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -56,7 +57,8 @@ export default function App() {
       mod.id === 'bus-fare' ||
       mod.id === 'library-fine' ||
       mod.id === 'mobile-recharge' ||
-      mod.id === 'shopping-discount'
+      mod.id === 'shopping-discount' ||
+      mod.id === 'temperature-alert'
     ) {
       setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
@@ -121,6 +123,9 @@ export default function App() {
         ) : activeCalculatorId === 'shopping-discount' ? (
           /* Dedicated Shopping Discount Calculator View */
           <ShoppingDiscountCalculator onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'temperature-alert' ? (
+          /* Dedicated Temperature Alert Checker View */
+          <TemperatureAlertChecker onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>

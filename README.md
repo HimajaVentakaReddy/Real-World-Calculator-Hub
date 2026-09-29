@@ -87,12 +87,20 @@ A clean, responsive, and beginner-friendly college mini project that brings toge
   - $\text{Final Amount (₹)} = \text{Shopping Amount} - \text{Discount Amount}$
 - **Outputs**: Customer billing summary, original amount, applied discount rate, discount savings in ₹, and final payable amount in ₹.
 
+### 8. 🌡️ Temperature Alert Checker
+- **Inputs**: Location Name, Temperature (°C) (supports negative numbers).
+- **Classification & Alert Rules**:
+  - Below 20°C $\rightarrow$ **Low Temperature** ("Temperature is low.")
+  - 20°C to 30°C $\rightarrow$ **Normal Temperature** ("Temperature is normal.")
+  - 31°C to 40°C $\rightarrow$ **High Temperature** ("Warning: Temperature is high.")
+  - Above 40°C $\rightarrow$ **Very High Temperature** ("Alert: Temperature is very high.")
+- **Outputs**: Location name, entered temperature (°C and °F), temperature category, and safety alert advisory message.
+
 ---
 
 ### 📋 Planned Modules (Roadmap Preview)
 
-The remaining 3 modules are represented on the dashboard with specifications and formula previews:
-8. 🌡️ **Temperature Alert Checker** (°C/°F conversion with extreme heat/frost advisories)
+The remaining 2 modules are represented on the dashboard with specifications and formula previews:
 9. 🚦 **Traffic Fine Checker** (Statutory penalty fees and traffic violation lookup)
 10. 🅿️ **Car Wash Bill Calculator** (Vehicle size pricing, wash tiers & detailing add-ons)
 
@@ -183,14 +191,15 @@ Real-World-Calculator-Hub/
             ├── BusFareCalculator.tsx    # 🚌 Bus Fare Calculator (Active)
             ├── LibraryFineCalculator.tsx # 📚 Library Fine Calculator (Active)
             ├── MobileRechargeChecker.tsx # 📱 Mobile Recharge Checker (Active)
-            └── ShoppingDiscountCalculator.tsx # 🛒 Shopping Discount Calculator (Active)
+            ├── ShoppingDiscountCalculator.tsx # 🛒 Shopping Discount Calculator (Active)
+            └── TemperatureAlertChecker.tsx # 🌡️ Temperature Alert Checker (Active)
 ```
 
 ---
 
 ## 🔮 Future Enhancements
 
-- [ ] Implementation of remaining 3 calculation engines (Temperature, Traffic, Car Wash).
+- [ ] Implementation of remaining 2 calculation engines (Traffic, Car Wash).
 - [ ] Calculation history log stored in local storage for quick review.
 - [ ] Printable / PDF export for water utility bills and hotel booking invoices.
 - [ ] Unit toggle switches (e.g. Kilometres vs. Miles, Litres vs. Gallons).

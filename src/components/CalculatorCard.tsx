@@ -19,7 +19,7 @@ export function CalculatorCard({ module, onSelect }: CalculatorCardProps) {
           </div>
 
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            {(module.id === 'fuel-cost' || module.id === 'water-bill' || module.id === 'hotel-bill' || module.id === 'bus-fare' || module.id === 'library-fine' || module.id === 'mobile-recharge' || module.id === 'shopping-discount') && (
+            {(module.id === 'fuel-cost' || module.id === 'water-bill' || module.id === 'hotel-bill' || module.id === 'bus-fare' || module.id === 'library-fine' || module.id === 'mobile-recharge' || module.id === 'shopping-discount' || module.id === 'temperature-alert') && (
               <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 Active
