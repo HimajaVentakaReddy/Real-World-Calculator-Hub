@@ -75,12 +75,23 @@ A clean, responsive, and beginner-friendly college mini project that brings toge
 - **Formula**: $\text{Expiry Date} = \text{Recharge Date} + \text{Validity Period (Days)}$
 - **Outputs**: Live subscription status badge (**Active** vs. **Expired**), days remaining or overdue, pack price, and formatted calendar expiry date.
 
+### 7. 🛒 Shopping Discount Calculator
+- **Inputs**: Customer Name, Shopping Amount (₹).
+- **Discount Rules**:
+  - Below ₹1,000 $\rightarrow$ No discount (0%)
+  - ₹1,000 to ₹2,999 $\rightarrow$ 5% discount
+  - ₹3,000 to ₹4,999 $\rightarrow$ 10% discount
+  - ₹5,000 and above $\rightarrow$ 15% discount
+- **Formulas**:
+  - $\text{Discount Amount (₹)} = \text{Shopping Amount} \times \frac{\text{Discount Percentage}}{100}$
+  - $\text{Final Amount (₹)} = \text{Shopping Amount} - \text{Discount Amount}$
+- **Outputs**: Customer billing summary, original amount, applied discount rate, discount savings in ₹, and final payable amount in ₹.
+
 ---
 
 ### 📋 Planned Modules (Roadmap Preview)
 
-The remaining 4 modules are represented on the dashboard with specifications and formula previews:
-7. 🛒 **Shopping Discount Calculator** (Percentage markdown, coupon savings, and sales tax)
+The remaining 3 modules are represented on the dashboard with specifications and formula previews:
 8. 🌡️ **Temperature Alert Checker** (°C/°F conversion with extreme heat/frost advisories)
 9. 🚦 **Traffic Fine Checker** (Statutory penalty fees and traffic violation lookup)
 10. 🅿️ **Car Wash Bill Calculator** (Vehicle size pricing, wash tiers & detailing add-ons)
@@ -171,14 +182,15 @@ Real-World-Calculator-Hub/
             ├── HotelBillCalculator.tsx  # 🏨 Hotel Room Bill Calculator (Active)
             ├── BusFareCalculator.tsx    # 🚌 Bus Fare Calculator (Active)
             ├── LibraryFineCalculator.tsx # 📚 Library Fine Calculator (Active)
-            └── MobileRechargeChecker.tsx # 📱 Mobile Recharge Checker (Active)
+            ├── MobileRechargeChecker.tsx # 📱 Mobile Recharge Checker (Active)
+            └── ShoppingDiscountCalculator.tsx # 🛒 Shopping Discount Calculator (Active)
 ```
 
 ---
 
 ## 🔮 Future Enhancements
 
-- [ ] Implementation of remaining 4 calculation engines (Discount, Temperature, Traffic, Car Wash).
+- [ ] Implementation of remaining 3 calculation engines (Temperature, Traffic, Car Wash).
 - [ ] Calculation history log stored in local storage for quick review.
 - [ ] Printable / PDF export for water utility bills and hotel booking invoices.
 - [ ] Unit toggle switches (e.g. Kilometres vs. Miles, Litres vs. Gallons).

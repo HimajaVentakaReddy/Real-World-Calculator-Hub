@@ -16,6 +16,7 @@ import { HotelBillCalculator } from './components/calculators/HotelBillCalculato
 import { BusFareCalculator } from './components/calculators/BusFareCalculator';
 import { LibraryFineCalculator } from './components/calculators/LibraryFineCalculator';
 import { MobileRechargeChecker } from './components/calculators/MobileRechargeChecker';
+import { ShoppingDiscountCalculator } from './components/calculators/ShoppingDiscountCalculator';
 import { CALCULATOR_MODULES } from './data/calculatorsData';
 import { CalculatorCategory, CalculatorModule } from './types/calculator';
 
@@ -54,7 +55,8 @@ export default function App() {
       mod.id === 'hotel-bill' ||
       mod.id === 'bus-fare' ||
       mod.id === 'library-fine' ||
-      mod.id === 'mobile-recharge'
+      mod.id === 'mobile-recharge' ||
+      mod.id === 'shopping-discount'
     ) {
       setActiveCalculatorId(mod.id);
       setActiveTab('calculators');
@@ -116,6 +118,9 @@ export default function App() {
         ) : activeCalculatorId === 'mobile-recharge' ? (
           /* Dedicated Mobile Recharge Checker View */
           <MobileRechargeChecker onBack={handleBackToHome} />
+        ) : activeCalculatorId === 'shopping-discount' ? (
+          /* Dedicated Shopping Discount Calculator View */
+          <ShoppingDiscountCalculator onBack={handleBackToHome} />
         ) : (
           /* Homepage View */
           <>
