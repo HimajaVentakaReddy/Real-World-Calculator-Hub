@@ -1,0 +1,85 @@
+================================================================================
+TEST CASE 1: Emergency Patient (Priority Acceptance)
+================================================================================
+INPUT:
+Enter Patient Name: Rajesh Kumar
+Enter Patient Age (in years): 45
+Enter Appointment Type (General / Specialist): General
+Is this an Emergency? (Yes / No): Yes
+
+OUTPUT:
+--------------------------------------------------
+               APPOINTMENT SUMMARY                
+--------------------------------------------------
+Patient Name     : Rajesh Kumar
+Patient Age      : 45 years
+Appointment Type : General
+Emergency Status : YES
+--------------------------------------------------
+Status           : ACCEPTED (EMERGENCY PRIORITY)
+Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
+Notes            : On-duty emergency doctor assigned with highest priority.
+==================================================
+
+================================================================================
+TEST CASE 2: Non-Emergency Specialist Consultation
+================================================================================
+INPUT:
+Enter Patient Name: Priya Sharma
+Enter Patient Age (in years): 29
+Enter Appointment Type (General / Specialist): Specialist
+Is this an Emergency? (Yes / No): No
+
+OUTPUT:
+--------------------------------------------------
+               APPOINTMENT SUMMARY                
+--------------------------------------------------
+Patient Name     : Priya Sharma
+Patient Age      : 29 years
+Appointment Type : Specialist
+Emergency Status : NO
+--------------------------------------------------
+Status           : ACCEPTED (SPECIALIST CONSULTATION)
+Action Required  : Booked with the concerned Department Specialist.
+Notes            : Please bring prior medical records and test reports.
+==================================================
+
+================================================================================
+TEST CASE 3: Invalid Age Input (< 1 year)
+================================================================================
+INPUT:
+Enter Patient Name: Baby Aarav
+Enter Patient Age (in years): 0
+
+OUTPUT:
+[ERROR] Invalid age! Age must be between 1 and 120 years. Appointment rejected.
+
+================================================================================
+TEST CASE 4: Invalid Age Input (> 120 years)
+================================================================================
+INPUT:
+Enter Patient Name: Old Timer
+Enter Patient Age (in years): 125
+
+OUTPUT:
+[ERROR] Invalid age! Age must be between 1 and 120 years. Appointment rejected.
+
+================================================================================
+TEST CASE 5: Invalid Appointment Type
+================================================================================
+INPUT:
+Enter Patient Name: Amit Verma
+Enter Patient Age (in years): 34
+Enter Appointment Type (General / Specialist): Dental
+
+OUTPUT:
+[ERROR] Invalid appointment type! Please enter either 'General' or 'Specialist'.
+
+================================================================================
+TEST CASE 6: Blank Patient Name
+================================================================================
+INPUT:
+Enter Patient Name: 
+
+OUTPUT:
+[ERROR] Patient name cannot be blank. Appointment rejected.
