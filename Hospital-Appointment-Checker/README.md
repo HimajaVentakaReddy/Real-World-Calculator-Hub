@@ -6,44 +6,55 @@ A beginner-friendly Java console application to evaluate, validate, and schedule
 
 ## 📌 Project Overview
 
-This project simulates a hospital front-desk reception triage system. Using basic Java concepts such as `Scanner` for console input, conditional branching (`if-else`), and string comparison methods, it checks patient details and immediately routes them according to their medical urgency.
+This project simulates a hospital front-desk reception triage system. Using basic Java concepts such as `Scanner` for console input, beginner-friendly `while` validation loops, and simple conditional branching (`if-else`), it securely gathers patient details and immediately routes them according to medical urgency.
 
 ---
 
-## 📋 Features & Business Rules
+## ✨ New Input-Validation Features
 
-1. **Patient Information Collection:**
-   * Patient Name
-   * Patient Age (in years)
-   * Appointment Type (`General` or `Specialist`)
-   * Emergency Status (`Yes` or `No`)
+The program now includes interactive input validation loops so users are prompted again if an invalid value is entered:
 
-2. **Validation Rules:**
-   * **Blank Name:** Patient name cannot be blank.
-   * **Age Boundaries:** Patient age must be between **1 and 120 years**. Ages below 1 or above 120 are flagged as invalid.
-   * **Appointment Type:** Only `General` or `Specialist` (case-insensitive) are accepted.
-   * **Emergency Flag:** Only `Yes` or `No` (case-insensitive) are accepted.
+1. **Patient Name Validation:**
+   * Verifies that the name is not empty or composed solely of whitespace.
+   * Prompts the user repeatedly until a non-empty name is provided.
 
-3. **Triage & Priority Decision Logic:**
-   * **Emergency Priority:** If Emergency is `Yes`, the appointment is accepted immediately with **EMERGENCY PRIORITY**, directing the patient straight to the emergency/trauma triage room.
-   * **General Consultation:** If non-emergency and `General`, a standard OPD consultation token is issued.
-   * **Specialist Consultation:** If non-emergency and `Specialist`, a department specialist slot is booked.
+2. **Age Range Validation (1 to 120 years):**
+   * Uses `scanner.hasNextInt()` to protect against non-numeric entries (e.g., words or symbols).
+   * Validates that age falls within the realistic boundary of **1 to 120 years**.
+   * Re-prompts the user with an informative error message if outside range.
+
+3. **Appointment Type Validation (`General` / `Specialist`):**
+   * Uses case-insensitive comparison (`equalsIgnoreCase`).
+   * Rejects any unrecognized department choices and asks the user to enter either `General` or `Specialist`.
+
+4. **Emergency Status Validation (`Yes` / `No`):**
+   * Accepts only `Yes` or `No` (case-insensitive).
+   * Re-prompts until an unambiguous confirmation is provided.
+
+---
+
+## 📋 Triage & Priority Decision Logic
+
+* **Emergency Priority:** If Emergency is `Yes`, the appointment is accepted immediately with **EMERGENCY PRIORITY**, directing the patient straight to the emergency/trauma ward.
+* **General Consultation:** If non-emergency and `General`, a standard OPD consultation token is issued.
+* **Specialist Consultation:** If non-emergency and `Specialist`, an appointment is scheduled with the concerned department specialist.
 
 ---
 
 ## 🛠️ Concepts Used
 
-* **`java.util.Scanner`** for reading string and integer inputs from the console.
-* **Basic Data Types:** `String`, `int`, `boolean`.
+* **`java.util.Scanner`** for reading console input.
+* **Primitive & Reference Types:** `String`, `int`, `boolean`.
 * **String Methods:** `.trim()`, `.isEmpty()`, `.equalsIgnoreCase()`.
-* **Input Validation & Buffer Clearing:** `scanner.hasNextInt()` and `scanner.nextLine()`.
-* **Control Flow:** Nested and cascading `if-else` decision structures.
+* **Validation Loops:** `while(true)` with `break` upon meeting valid conditions.
+* **Buffer Management:** `scanner.nextLine()` to handle leftover newline characters.
+* **Conditional Branching:** Simple `if-else` decision trees.
 
 ---
 
 ## 🚀 How to Compile and Run
 
-Make sure you have Java JDK (version 8 or higher) installed.
+Make sure you have Java JDK installed (version 8 or higher).
 
 ### 1. Compile the Java file
 ```bash
@@ -57,51 +68,37 @@ java HospitalAppointmentChecker
 
 ---
 
-## 🧪 Sample Inputs and Outputs
+## 🧪 Sample Execution with Input Validation
 
-### Case 1: Emergency Patient (High Priority Acceptance)
 ```text
 ==================================================
        HOSPITAL APPOINTMENT CHECKER SYSTEM        
 ==================================================
-Enter Patient Name: Rajesh Kumar
-Enter Patient Age (in years): 45
-Enter Appointment Type (General / Specialist): General
-Is this an Emergency? (Yes / No): Yes
+Enter Patient Name: 
+[ERROR] Patient name cannot be empty. Please enter a valid name.
 
---------------------------------------------------
-               APPOINTMENT SUMMARY                
---------------------------------------------------
-Patient Name     : Rajesh Kumar
-Patient Age      : 45 years
-Appointment Type : General
-Emergency Status : YES
---------------------------------------------------
-Status           : ACCEPTED (EMERGENCY PRIORITY)
-Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
-Notes            : On-duty emergency doctor assigned with highest priority.
-==================================================
-      Thank you for using our Hospital System!     
-==================================================
-```
+Enter Patient Name: Sneha Rao
+Enter Patient Age (1 - 120 years): 150
+[ERROR] Invalid age! Age must be between 1 and 120 years.
 
----
+Enter Patient Age (1 - 120 years): thirty
+[ERROR] Invalid input! Age must be a whole numeric value.
 
-### Case 2: Regular Specialist Appointment (Non-Emergency)
-```text
-==================================================
-       HOSPITAL APPOINTMENT CHECKER SYSTEM        
-==================================================
-Enter Patient Name: Priya Sharma
-Enter Patient Age (in years): 29
+Enter Patient Age (1 - 120 years): 32
+Enter Appointment Type (General / Specialist): Dental
+[ERROR] Invalid appointment type! Please enter either 'General' or 'Specialist'.
+
 Enter Appointment Type (General / Specialist): Specialist
+Is this an Emergency? (Yes / No): Maybe
+[ERROR] Invalid response! Please enter either 'Yes' or 'No'.
+
 Is this an Emergency? (Yes / No): No
 
 --------------------------------------------------
                APPOINTMENT SUMMARY                
 --------------------------------------------------
-Patient Name     : Priya Sharma
-Patient Age      : 29 years
+Patient Name     : Sneha Rao
+Patient Age      : 32 years
 Appointment Type : Specialist
 Emergency Status : NO
 --------------------------------------------------
@@ -115,38 +112,10 @@ Notes            : Please bring prior medical records and test reports.
 
 ---
 
-### Case 3: Invalid Age Boundary Check
-```text
-==================================================
-       HOSPITAL APPOINTMENT CHECKER SYSTEM        
-==================================================
-Enter Patient Name: Baby Aarav
-Enter Patient Age (in years): 0
-
-[ERROR] Invalid age! Age must be between 1 and 120 years. Appointment rejected.
-```
-
----
-
-### Case 4: Invalid Appointment Category
-```text
-==================================================
-       HOSPITAL APPOINTMENT CHECKER SYSTEM        
-==================================================
-Enter Patient Name: Amit Verma
-Enter Patient Age (in years): 34
-Enter Appointment Type (General / Specialist): Dental
-
-[ERROR] Invalid appointment type! Please enter either 'General' or 'Specialist'.
-```
-
----
-
 ## 💡 Code Logic Walkthrough
 
-1. **Input Phase:** The program prompts for the patient's name, age, appointment type, and emergency condition.
-2. **Early Exit on Error:** Each input is validated sequentially. If invalid data is detected (such as an empty string, out-of-range age, or unrecognized choice), the system prints a clear, friendly error message and safely exits.
-3. **Decision Hierarchy:**
-   * Checking `isEmergencyYes` first guarantees that critical emergency patients are never delayed by department filters.
-   * Non-emergency cases then branch into General or Specialist slots.
-4. **Clean Exit:** At the end of execution, `scanner.close()` is invoked to prevent resource leaks.
+1. **Looping Input Blocks:** Each user input is enclosed in a straightforward `while (true)` loop.
+2. **Instant Error Feedback:** If the user enters invalid data (such as leaving the name blank, typing non-numeric age, giving an out-of-range age, or typing an invalid option), the program displays an `[ERROR]` message and reprompts.
+3. **Escaping the Loop:** Once the input passes validation checks, a `break;` statement exits the loop and moves cleanly to the next question.
+4. **Emergency Priority Evaluation:** Emergency status is evaluated first to ensure urgent cases receive immediate attention.
+5. **Safe Resource Teardown:** Closes the `Scanner` object at the end of `main`.
