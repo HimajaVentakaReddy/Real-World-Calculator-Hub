@@ -4,7 +4,7 @@ import java.util.Scanner;
  * Project Name: Hospital-Appointment-Checker
  * Description : A beginner-friendly Java console application to check and process
  *               patient hospital appointment requests with interactive input validation
- *               loops for name, age, appointment type, and emergency priority.
+ *               loops and automated appointment fee calculations.
  */
 public class HospitalAppointmentChecker {
 
@@ -91,7 +91,27 @@ public class HospitalAppointmentChecker {
         }
 
         // ==================================================
-        // DECISION LOGIC USING SIMPLE IF-ELSE CONDITIONS
+        // FEE CALCULATION LOGIC
+        // ==================================================
+        // Base Fee: General = ₹200, Specialist = ₹500
+        int baseFee = 0;
+        if (isGeneral) {
+            baseFee = 200;
+        } else {
+            baseFee = 500;
+        }
+
+        // Emergency Surcharge: ₹100 if Emergency is Yes, else ₹0
+        int emergencyCharge = 0;
+        if (isEmergencyYes) {
+            emergencyCharge = 100;
+        }
+
+        // Total Appointment Fee Calculation
+        int totalFee = baseFee + emergencyCharge;
+
+        // ==================================================
+        // DISPLAY APPOINTMENT SUMMARY & BILLING DETAILS
         // ==================================================
         System.out.println("\n--------------------------------------------------");
         System.out.println("               APPOINTMENT SUMMARY                ");
@@ -121,6 +141,15 @@ public class HospitalAppointmentChecker {
             }
         }
 
+        // --------------------------------------------------
+        // BILLING BREAKDOWN
+        // --------------------------------------------------
+        System.out.println("--------------------------------------------------");
+        System.out.println("                 BILLING DETAILS                  ");
+        System.out.println("--------------------------------------------------");
+        System.out.println("Base Fee         : ₹" + baseFee + " (" + (isGeneral ? "General" : "Specialist") + ")");
+        System.out.println("Emergency Charge : ₹" + emergencyCharge + (isEmergencyYes ? " (Emergency Priority Surcharge)" : " (None)"));
+        System.out.println("Total Fee        : ₹" + totalFee);
         System.out.println("==================================================");
         System.out.println("      Thank you for using our Hospital System!     ");
         System.out.println("==================================================");

@@ -1,55 +1,13 @@
 ================================================================================
-SAMPLE RUN 1: Interactive Input Validation with Recovery
+SAMPLE 1: Emergency General Appointment (Base ₹200 + Emergency ₹100 = ₹300)
 ================================================================================
-INPUT / PROMPT TRACE:
-==================================================
-       HOSPITAL APPOINTMENT CHECKER SYSTEM        
-==================================================
-Enter Patient Name: 
-[ERROR] Patient name cannot be empty. Please enter a valid name.
-
-Enter Patient Name: Sneha Rao
-Enter Patient Age (1 - 120 years): 150
-[ERROR] Invalid age! Age must be between 1 and 120 years.
-
-Enter Patient Age (1 - 120 years): thirty
-[ERROR] Invalid input! Age must be a whole numeric value.
-
-Enter Patient Age (1 - 120 years): 32
-Enter Appointment Type (General / Specialist): Dental
-[ERROR] Invalid appointment type! Please enter either 'General' or 'Specialist'.
-
-Enter Appointment Type (General / Specialist): Specialist
-Is this an Emergency? (Yes / No): Maybe
-[ERROR] Invalid response! Please enter either 'Yes' or 'No'.
-
-Is this an Emergency? (Yes / No): No
-
-OUTPUT SUMMARY:
---------------------------------------------------
-               APPOINTMENT SUMMARY                
---------------------------------------------------
-Patient Name     : Sneha Rao
-Patient Age      : 32 years
-Appointment Type : Specialist
-Emergency Status : NO
---------------------------------------------------
-Status           : ACCEPTED (SPECIALIST CONSULTATION)
-Action Required  : Booked with the concerned Department Specialist.
-Notes            : Please bring prior medical records and test reports.
-==================================================
-      Thank you for using our Hospital System!     
-==================================================
-
-================================================================================
-SAMPLE RUN 2: Emergency Patient (Direct Valid Inputs)
-================================================================================
+INPUT:
 Enter Patient Name: Rajesh Kumar
 Enter Patient Age (1 - 120 years): 45
 Enter Appointment Type (General / Specialist): General
 Is this an Emergency? (Yes / No): Yes
 
-OUTPUT SUMMARY:
+OUTPUT:
 --------------------------------------------------
                APPOINTMENT SUMMARY                
 --------------------------------------------------
@@ -61,6 +19,97 @@ Emergency Status : YES
 Status           : ACCEPTED (EMERGENCY PRIORITY)
 Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
 Notes            : On-duty emergency doctor assigned with highest priority.
+--------------------------------------------------
+                 BILLING DETAILS                  
+--------------------------------------------------
+Base Fee         : ₹200 (General)
+Emergency Charge : ₹100 (Emergency Priority Surcharge)
+Total Fee        : ₹300
 ==================================================
-      Thank you for using our Hospital System!     
+
+================================================================================
+SAMPLE 2: Non-Emergency Specialist (Base ₹500 + Emergency ₹0 = ₹500)
+================================================================================
+INPUT:
+Enter Patient Name: Priya Sharma
+Enter Patient Age (1 - 120 years): 29
+Enter Appointment Type (General / Specialist): Specialist
+Is this an Emergency? (Yes / No): No
+
+OUTPUT:
+--------------------------------------------------
+               APPOINTMENT SUMMARY                
+--------------------------------------------------
+Patient Name     : Priya Sharma
+Patient Age      : 29 years
+Appointment Type : Specialist
+Emergency Status : NO
+--------------------------------------------------
+Status           : ACCEPTED (SPECIALIST CONSULTATION)
+Action Required  : Booked with the concerned Department Specialist.
+Notes            : Please bring prior medical records and test reports.
+--------------------------------------------------
+                 BILLING DETAILS                  
+--------------------------------------------------
+Base Fee         : ₹500 (Specialist)
+Emergency Charge : ₹0 (None)
+Total Fee        : ₹500
+==================================================
+
+================================================================================
+SAMPLE 3: Emergency Specialist (Base ₹500 + Emergency ₹100 = ₹600)
+================================================================================
+INPUT:
+Enter Patient Name: Deepa Nair
+Enter Patient Age (1 - 120 years): 38
+Enter Appointment Type (General / Specialist): Specialist
+Is this an Emergency? (Yes / No): Yes
+
+OUTPUT:
+--------------------------------------------------
+               APPOINTMENT SUMMARY                
+--------------------------------------------------
+Patient Name     : Deepa Nair
+Patient Age      : 38 years
+Appointment Type : Specialist
+Emergency Status : YES
+--------------------------------------------------
+Status           : ACCEPTED (EMERGENCY PRIORITY)
+Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
+Notes            : On-duty emergency doctor assigned with highest priority.
+--------------------------------------------------
+                 BILLING DETAILS                  
+--------------------------------------------------
+Base Fee         : ₹500 (Specialist)
+Emergency Charge : ₹100 (Emergency Priority Surcharge)
+Total Fee        : ₹600
+==================================================
+
+================================================================================
+SAMPLE 4: Non-Emergency General (Base ₹200 + Emergency ₹0 = ₹200)
+================================================================================
+INPUT:
+Enter Patient Name: Kiran Rao
+Enter Patient Age (1 - 120 years): 22
+Enter Appointment Type (General / Specialist): General
+Is this an Emergency? (Yes / No): No
+
+OUTPUT:
+--------------------------------------------------
+               APPOINTMENT SUMMARY                
+--------------------------------------------------
+Patient Name     : Kiran Rao
+Patient Age      : 22 years
+Appointment Type : General
+Emergency Status : NO
+--------------------------------------------------
+Status           : ACCEPTED (STANDARD PRIORITY)
+Action Required  : Scheduled for General Physician OPD consultation.
+Notes            : Regular token issued. Please arrive 15 minutes before your slot.
+--------------------------------------------------
+                 BILLING DETAILS                  
+--------------------------------------------------
+Base Fee         : ₹200 (General)
+Emergency Charge : ₹0 (None)
+Total Fee        : ₹200
 ==================================================
