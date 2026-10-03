@@ -3,8 +3,8 @@ import java.util.Scanner;
 /**
  * Project Name: Hospital-Appointment-Checker
  * Description : A beginner-friendly Java console application to check and process
- *               patient hospital appointment requests with interactive input validation
- *               loops and automated appointment fee calculations.
+ *               patient hospital appointment requests with interactive input validation,
+ *               preferred time-slot scheduling, emergency triage priority, and fee calculation.
  */
 public class HospitalAppointmentChecker {
 
@@ -72,7 +72,29 @@ public class HospitalAppointmentChecker {
         }
 
         // --------------------------------------------------
-        // 4. Emergency Status Input (Validated: Yes or No)
+        // 4. Appointment Time Slot Input (Morning / Afternoon / Evening)
+        // --------------------------------------------------
+        String timeSlot = "";
+        while (true) {
+            System.out.print("Select Appointment Time Slot (Morning / Afternoon / Evening): ");
+            String slotInput = scanner.nextLine().trim();
+
+            if (slotInput.equalsIgnoreCase("Morning")) {
+                timeSlot = "Morning (09:00 AM - 12:00 PM)";
+                break;
+            } else if (slotInput.equalsIgnoreCase("Afternoon")) {
+                timeSlot = "Afternoon (01:00 PM - 04:00 PM)";
+                break;
+            } else if (slotInput.equalsIgnoreCase("Evening")) {
+                timeSlot = "Evening (05:00 PM - 08:00 PM)";
+                break;
+            } else {
+                System.out.println("[ERROR] Invalid time slot! Please choose 'Morning', 'Afternoon', or 'Evening'.\n");
+            }
+        }
+
+        // --------------------------------------------------
+        // 5. Emergency Status Input (Validated: Yes or No)
         // --------------------------------------------------
         String emergencyInput = "";
         boolean isEmergencyYes = false;
@@ -119,6 +141,7 @@ public class HospitalAppointmentChecker {
         System.out.println("Patient Name     : " + patientName);
         System.out.println("Patient Age      : " + patientAge + " years");
         System.out.println("Appointment Type : " + (isGeneral ? "General" : "Specialist"));
+        System.out.println("Time Slot        : " + timeSlot);
         System.out.println("Emergency Status : " + (isEmergencyYes ? "YES" : "NO"));
         System.out.println("--------------------------------------------------");
 
@@ -126,18 +149,18 @@ public class HospitalAppointmentChecker {
             // Rule: Emergency patients are given top priority acceptance
             System.out.println("Status           : ACCEPTED (EMERGENCY PRIORITY)");
             System.out.println("Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.");
-            System.out.println("Notes            : On-duty emergency doctor assigned with highest priority.");
+            System.out.println("Priority Notice  : Patient will receive immediate emergency doctor priority regardless of the scheduled time slot.");
         } else {
             // Non-emergency standard appointments
             if (isGeneral) {
                 System.out.println("Status           : ACCEPTED (STANDARD PRIORITY)");
                 System.out.println("Action Required  : Scheduled for General Physician OPD consultation.");
-                System.out.println("Notes            : Regular token issued. Please arrive 15 minutes before your slot.");
+                System.out.println("Slot Notice      : Please report 15 minutes before your " + timeSlot + ".");
             } else {
                 // Specialist appointment
                 System.out.println("Status           : ACCEPTED (SPECIALIST CONSULTATION)");
                 System.out.println("Action Required  : Booked with the concerned Department Specialist.");
-                System.out.println("Notes            : Please bring prior medical records and test reports.");
+                System.out.println("Slot Notice      : Please report with previous medical records during your " + timeSlot + ".");
             }
         }
 

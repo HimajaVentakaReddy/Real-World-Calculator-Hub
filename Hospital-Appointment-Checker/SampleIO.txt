@@ -1,10 +1,11 @@
 ================================================================================
-SAMPLE 1: Emergency General Appointment (Base ₹200 + Emergency ₹100 = ₹300)
+SAMPLE 1: Emergency Patient with Priority Notice and Morning Slot
 ================================================================================
 INPUT:
 Enter Patient Name: Rajesh Kumar
 Enter Patient Age (1 - 120 years): 45
 Enter Appointment Type (General / Specialist): General
+Select Appointment Time Slot (Morning / Afternoon / Evening): Morning
 Is this an Emergency? (Yes / No): Yes
 
 OUTPUT:
@@ -14,11 +15,12 @@ OUTPUT:
 Patient Name     : Rajesh Kumar
 Patient Age      : 45 years
 Appointment Type : General
+Time Slot        : Morning (09:00 AM - 12:00 PM)
 Emergency Status : YES
 --------------------------------------------------
 Status           : ACCEPTED (EMERGENCY PRIORITY)
 Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
-Notes            : On-duty emergency doctor assigned with highest priority.
+Priority Notice  : Patient will receive immediate emergency doctor priority regardless of the scheduled time slot.
 --------------------------------------------------
                  BILLING DETAILS                  
 --------------------------------------------------
@@ -28,12 +30,13 @@ Total Fee        : ₹300
 ==================================================
 
 ================================================================================
-SAMPLE 2: Non-Emergency Specialist (Base ₹500 + Emergency ₹0 = ₹500)
+SAMPLE 2: Non-Emergency Specialist with Evening Slot
 ================================================================================
 INPUT:
 Enter Patient Name: Priya Sharma
 Enter Patient Age (1 - 120 years): 29
 Enter Appointment Type (General / Specialist): Specialist
+Select Appointment Time Slot (Morning / Afternoon / Evening): Evening
 Is this an Emergency? (Yes / No): No
 
 OUTPUT:
@@ -43,11 +46,12 @@ OUTPUT:
 Patient Name     : Priya Sharma
 Patient Age      : 29 years
 Appointment Type : Specialist
+Time Slot        : Evening (05:00 PM - 08:00 PM)
 Emergency Status : NO
 --------------------------------------------------
 Status           : ACCEPTED (SPECIALIST CONSULTATION)
 Action Required  : Booked with the concerned Department Specialist.
-Notes            : Please bring prior medical records and test reports.
+Slot Notice      : Please report with previous medical records during your Evening (05:00 PM - 08:00 PM).
 --------------------------------------------------
                  BILLING DETAILS                  
 --------------------------------------------------
@@ -57,13 +61,16 @@ Total Fee        : ₹500
 ==================================================
 
 ================================================================================
-SAMPLE 3: Emergency Specialist (Base ₹500 + Emergency ₹100 = ₹600)
+SAMPLE 3: Interactive Time Slot Validation
 ================================================================================
 INPUT:
 Enter Patient Name: Deepa Nair
 Enter Patient Age (1 - 120 years): 38
 Enter Appointment Type (General / Specialist): Specialist
-Is this an Emergency? (Yes / No): Yes
+Select Appointment Time Slot (Morning / Afternoon / Evening): Night
+[ERROR] Invalid time slot! Please choose 'Morning', 'Afternoon', or 'Evening'.
+Select Appointment Time Slot (Morning / Afternoon / Evening): Afternoon
+Is this an Emergency? (Yes / No): No
 
 OUTPUT:
 --------------------------------------------------
@@ -72,44 +79,16 @@ OUTPUT:
 Patient Name     : Deepa Nair
 Patient Age      : 38 years
 Appointment Type : Specialist
-Emergency Status : YES
+Time Slot        : Afternoon (01:00 PM - 04:00 PM)
+Emergency Status : NO
 --------------------------------------------------
-Status           : ACCEPTED (EMERGENCY PRIORITY)
-Action Required  : Proceed directly to the Emergency / Trauma Ward immediately.
-Notes            : On-duty emergency doctor assigned with highest priority.
+Status           : ACCEPTED (SPECIALIST CONSULTATION)
+Action Required  : Booked with the concerned Department Specialist.
+Slot Notice      : Please report with previous medical records during your Afternoon (01:00 PM - 04:00 PM).
 --------------------------------------------------
                  BILLING DETAILS                  
 --------------------------------------------------
 Base Fee         : ₹500 (Specialist)
-Emergency Charge : ₹100 (Emergency Priority Surcharge)
-Total Fee        : ₹600
-==================================================
-
-================================================================================
-SAMPLE 4: Non-Emergency General (Base ₹200 + Emergency ₹0 = ₹200)
-================================================================================
-INPUT:
-Enter Patient Name: Kiran Rao
-Enter Patient Age (1 - 120 years): 22
-Enter Appointment Type (General / Specialist): General
-Is this an Emergency? (Yes / No): No
-
-OUTPUT:
---------------------------------------------------
-               APPOINTMENT SUMMARY                
---------------------------------------------------
-Patient Name     : Kiran Rao
-Patient Age      : 22 years
-Appointment Type : General
-Emergency Status : NO
---------------------------------------------------
-Status           : ACCEPTED (STANDARD PRIORITY)
-Action Required  : Scheduled for General Physician OPD consultation.
-Notes            : Regular token issued. Please arrive 15 minutes before your slot.
---------------------------------------------------
-                 BILLING DETAILS                  
---------------------------------------------------
-Base Fee         : ₹200 (General)
 Emergency Charge : ₹0 (None)
-Total Fee        : ₹200
+Total Fee        : ₹500
 ==================================================
